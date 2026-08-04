@@ -13,8 +13,8 @@
     },
     {
       "type": "multiple_choice", "id": "pride_flags_position", "title": "pride_flags_position", "callback": "PrideFlagsPosition", "value": "position",
-      "items": ["pride_flags_position_above", "pride_flags_position_left", "pride_flags_position_right"],
-      "item_values": ["above", "left", "right"], "default_value": "right"
+      "items": ["pride_flags_position_left", "pride_flags_position_right"],
+      "item_values": ["left", "right"], "default_value": "right"
     }
   ]
 }

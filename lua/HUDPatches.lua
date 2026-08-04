@@ -14,22 +14,15 @@ local function place_bitmap(bitmap, text, panel)
     local _, _, width, height = text:text_rect()
     local position = PrideFlags.Settings.position
     local gap = 4
-    if position == "above" then
-        bitmap:set_center_x(text:center_x())
-        bitmap:set_bottom(text:top() - gap)
-        panel:set_h(math.max(panel:h(), text:bottom() + bitmap:h() + gap))
-    elseif position == "left" then
+    if position == "left" then
+        text:set_x(bitmap:w() + gap)
         bitmap:set_right(text:left() - gap)
         bitmap:set_center_y(text:center_y())
+        panel:set_w(math.max(panel:w(), text:right() + gap))
     else
         bitmap:set_left(text:left() + width + gap)
         bitmap:set_center_y(text:center_y())
         panel:set_w(math.max(panel:w(), bitmap:right() + gap))
-    end
-    if position == "right" and bitmap:right() > panel:right() then
-        bitmap:set_right(panel:right())
-    elseif position == "left" and bitmap:left() < panel:left() then
-        bitmap:set_left(panel:left())
     end
 end
 
