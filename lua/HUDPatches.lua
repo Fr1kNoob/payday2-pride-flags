@@ -5,25 +5,18 @@ end
 local function add_bitmap(panel, name)
     local bitmap = panel:child(name)
     if not alive(bitmap) then
-        bitmap = panel:bitmap({ name = name, layer = 100, visible = false })
+        bitmap = panel:bitmap({ name = name, layer = 0, visible = false })
     end
     return bitmap
 end
 
 local function place_bitmap(bitmap, text, panel)
     local _, _, width, height = text:text_rect()
-    local position = PrideFlags.Settings.position
     local gap = 4
-    if position == "left" then
-        text:set_x(bitmap:w() + gap)
-        bitmap:set_right(text:left() - gap)
-        bitmap:set_center_y(text:center_y())
-        panel:set_w(math.max(panel:w(), text:right() + gap))
-    else
-        bitmap:set_left(text:left() + width + gap)
-        bitmap:set_center_y(text:center_y())
-        panel:set_w(math.max(panel:w(), bitmap:right() + gap))
-    end
+    text:set_x(bitmap:w() + gap)
+    bitmap:set_right(text:left() - gap)
+    bitmap:set_center_y(text:center_y())
+    panel:set_w(math.max(panel:w(), text:right() + gap))
 end
 
 local function refresh_teammate(teammate)
@@ -116,7 +109,7 @@ elseif RequiredScript == "lib/managers/hud/hudchat" then
         local bitmap = add_bitmap(panel, "pride_flags_icon")
         PrideFlags:ApplyBitmap(bitmap, peer_id, HUDChat.LINE_HEIGHT / 20)
         local old_lines = entry.lines or 1
-        local spacer = PrideFlags.Settings.position == "right" and "    " or " "
+        local spacer = " "
         text:set_text(tostring(name) .. ":" .. spacer .. tostring(message))
         text:set_range_color(0, utf8.len(name) + 1, color or Color.white)
         local new_lines = text:number_of_lines()

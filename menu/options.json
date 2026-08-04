@@ -10,11 +10,6 @@
       "type": "multiple_choice", "id": "pride_flags_flag", "title": "pride_flags_flag", "callback": "PrideFlagsVariant", "value": "flag",
       "items": ["pride_flags_trans", "pride_flags_bi", "pride_flags_lesbian", "pride_flags_ace", "pride_flags_nonbinary", "pride_flags_gay", "pride_flags_pan", "pride_flags_aro", "pride_flags_agender", "pride_flags_genderfluid", "pride_flags_genderqueer", "pride_flags_bigender", "pride_flags_demigender", "pride_flags_demisexual", "pride_flags_aromantic", "pride_flags_polysexual", "pride_flags_omnisexual", "pride_flags_intersex", "pride_flags_neutrois", "pride_flags_progress"],
       "item_values": ["trans", "bi", "lesbian", "ace", "nonbinary", "gay", "pan", "aro", "agender", "genderfluid", "genderqueer", "bigender", "demigender", "demisexual", "aromantic", "polysexual", "omnisexual", "intersex", "neutrois", "progress"], "default_value": "trans"
-    },
-    {
-      "type": "multiple_choice", "id": "pride_flags_position", "title": "pride_flags_position", "callback": "PrideFlagsPosition", "value": "position",
-      "items": ["pride_flags_position_left", "pride_flags_position_right"],
-      "item_values": ["left", "right"], "default_value": "right"
     }
   ]
 }

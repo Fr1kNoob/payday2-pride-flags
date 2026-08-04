@@ -1,7 +1,7 @@
 _G.PrideFlags = _G.PrideFlags or {}
 
 PrideFlags.ModPath = PrideFlags.ModPath or ModPath
-PrideFlags.Version = "1.1.8"
+PrideFlags.Version = "1.1.9"
 PrideFlags.MessageId = "PrideFlags:hello"
 PrideFlags.SaveFile = SavePath .. "PrideFlags.json"
 PrideFlags.ValidFlags = {
@@ -31,7 +31,7 @@ PrideFlags.Defaults = {
     enabled = true,
     alpha = 90,
     flag = "trans",
-    position = "right"
+    position = "left"
 }
 PrideFlags.Settings = PrideFlags.Settings or {}
 PrideFlags.Peers = PrideFlags.Peers or {}
@@ -64,9 +64,7 @@ function PrideFlags:LoadSettings()
     end
     self.Settings.alpha = math.clamp(tonumber(self.Settings.alpha) or 90, 10, 100)
     self.Settings.flag = self:SanitizeFlag(self.Settings.flag)
-    if self.Settings.position ~= "left" and self.Settings.position ~= "right" then
-        self.Settings.position = "right"
-    end
+    self.Settings.position = "left"
 end
 
 function PrideFlags:SaveSettings()
@@ -244,10 +242,7 @@ elseif RequiredScript == "lib/managers/menumanager" then
     end
     MenuCallbackHandler.PrideFlagsPosition = function(_, item)
         local position = item:value()
-        if position ~= "left" and position ~= "right" then
-            position = "right"
-        end
-        PrideFlags.Settings.position = position
+        PrideFlags.Settings.position = "left"
         PrideFlags:SaveSettings()
     end
     MenuCallbackHandler.PrideFlagsVariant = function(_, item)
