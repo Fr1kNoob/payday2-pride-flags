@@ -9,7 +9,7 @@
     {
       "identifier": "pride_flags",
       "host": {
-        "meta": "https://raw.githubusercontent.com/Fr1kNoob/payday2-pride-flags/0cc8671/meta.json"
+        "meta": "https://raw.githubusercontent.com/Fr1kNoob/payday2-pride-flags/dab8cd6/meta.json"
       }
     }
   ],
