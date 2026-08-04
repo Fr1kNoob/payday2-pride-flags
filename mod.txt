@@ -1,7 +1,7 @@
 {
   "name": "Pride Flags",
   "description": "Shows opt-in pride flags beside players who also use this mod.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "blt_version": 2,
   "priority": 20,
   "image": "avatar.png",
@@ -9,7 +9,7 @@
     {
       "identifier": "pride_flags",
       "host": {
-        "meta": "https://raw.githubusercontent.com/Fr1kNoob/payday2-pride-flags/dab8cd6/meta.json"
+        "meta": "https://raw.githubusercontent.com/Fr1kNoob/payday2-pride-flags/main/meta.json"
       }
     }
   ],

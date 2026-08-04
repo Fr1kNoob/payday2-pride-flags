@@ -58,6 +58,11 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 elseif RequiredScript == "lib/managers/hudmanagerpd2" then
     if HUDTeammateCustom then
         PrideFlags:Log("Installed HUDTeammateCustom hook")
+        Hooks:PostHook(HUDTeammateCustom, "init", "PrideFlags_CustomInit", function(teammate)
+            if teammate.set_name and teammate._last_name then
+                teammate:set_name(teammate._last_name)
+            end
+        end)
         Hooks:PostHook(HUDTeammateCustom, "set_name", "PrideFlags_CustomSetName", function(teammate)
             local info = teammate._player_info
             local panel = info and info._panel
