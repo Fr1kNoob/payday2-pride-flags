@@ -1,7 +1,7 @@
 _G.PrideFlags = _G.PrideFlags or {}
 
 PrideFlags.ModPath = PrideFlags.ModPath or ModPath
-PrideFlags.Version = "1.1.5"
+PrideFlags.Version = "1.1.6"
 PrideFlags.MessageId = "PrideFlags:hello"
 PrideFlags.SaveFile = SavePath .. "PrideFlags.json"
 PrideFlags.ValidFlags = {
