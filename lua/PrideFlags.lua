@@ -14,10 +14,9 @@ PrideFlags.ValidFlags = {
 }
 PrideFlags.Defaults = {
     enabled = true,
-    offset_x = 3,
-    offset_y = 0,
     alpha = 90,
-    flag = "trans"
+    flag = "trans",
+    position = "right"
 }
 PrideFlags.Settings = PrideFlags.Settings or {}
 PrideFlags.Peers = PrideFlags.Peers or {}
@@ -48,10 +47,9 @@ function PrideFlags:LoadSettings()
             end
         end
     end
-    self.Settings.offset_x = math.clamp(tonumber(self.Settings.offset_x) or 3, -20, 20)
-    self.Settings.offset_y = math.clamp(tonumber(self.Settings.offset_y) or 0, -20, 20)
     self.Settings.alpha = math.clamp(tonumber(self.Settings.alpha) or 90, 10, 100)
     self.Settings.flag = self:SanitizeFlag(self.Settings.flag)
+    self.Settings.position = self.Settings.position == "above" or self.Settings.position == "left" or self.Settings.position == "right" and self.Settings.position or "right"
 end
 
 function PrideFlags:SaveSettings()

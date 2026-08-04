@@ -10,6 +10,26 @@ local function add_bitmap(panel, name)
     return bitmap
 end
 
+local function place_bitmap(bitmap, text, panel)
+    local _, _, width, height = text:text_rect()
+    local position = PrideFlags.Settings.position
+    if position == "above" then
+        bitmap:set_center_x(text:center_x())
+        bitmap:set_bottom(text:top() - 1)
+    elseif position == "left" then
+        bitmap:set_right(text:left() - 3)
+        bitmap:set_center_y(text:center_y())
+    else
+        bitmap:set_left(text:left() + width + 3)
+        bitmap:set_center_y(text:center_y())
+    end
+    if position == "right" and bitmap:right() > panel:right() then
+        bitmap:set_right(panel:right())
+    elseif position == "left" and bitmap:left() < panel:left() then
+        bitmap:set_left(panel:left())
+    end
+end
+
 local function refresh_teammate(teammate)
     if not teammate or not alive(teammate._panel) then
         return
@@ -23,9 +43,7 @@ local function refresh_teammate(teammate)
     local peer_id = (teammate.peer_id and teammate:peer_id()) or (is_local and (PrideFlags:LocalPeerId() or 0))
     local scale = name_text:font_size() / math.max(tweak_data.hud_players.name_size, 1)
     PrideFlags:ApplyBitmap(bitmap, peer_id, scale)
-    local _, _, text_width = name_text:text_rect()
-    bitmap:set_left(math.min(name_text:x() + text_width + PrideFlags.Settings.offset_x, teammate._panel:w() - bitmap:w()))
-    bitmap:set_center_y(name_text:center_y() + PrideFlags.Settings.offset_y)
+    place_bitmap(bitmap, name_text, teammate._panel)
 end
 
 if RequiredScript == "lib/managers/hud/hudteammate" then
@@ -62,14 +80,10 @@ elseif RequiredScript == "lib/managers/hudmanagerpd2" then
                         component:set_x(width)
                         component:set_w(component_width)
                         width = width + component_width + 3
-                        if component_name == "name" and bitmap:visible() then
-                            bitmap:set_left(width + PrideFlags.Settings.offset_x)
-                            width = width + bitmap:w() + math.max(PrideFlags.Settings.offset_x, 0)
-                        end
                     end
                 end
                 panel:set_w(math.max(width - 3, 0))
-                bitmap:set_center_y(name_text:center_y() + PrideFlags.Settings.offset_y)
+                place_bitmap(bitmap, name_text, panel)
             end
             PrideFlags:RegisterElement(teammate, refresh)
             refresh()
@@ -91,7 +105,8 @@ elseif RequiredScript == "lib/managers/hud/hudchat" then
         local bitmap = add_bitmap(panel, "pride_flags_icon")
         PrideFlags:ApplyBitmap(bitmap, peer_id, HUDChat.LINE_HEIGHT / 20)
         local old_lines = entry.lines or 1
-        text:set_text(tostring(name) .. ":    " .. tostring(message))
+        local spacer = PrideFlags.Settings.position == "right" and "    " or " "
+        text:set_text(tostring(name) .. ":" .. spacer .. tostring(message))
         text:set_range_color(0, utf8.len(name) + 1, color or Color.white)
         local new_lines = text:number_of_lines()
         text:set_h(HUDChat.LINE_HEIGHT * new_lines)
@@ -110,8 +125,7 @@ elseif RequiredScript == "lib/managers/hud/hudchat" then
         })
         local _, _, name_width = measure:text_rect()
         panel:remove(measure)
-        bitmap:set_left(text:x() + name_width + PrideFlags.Settings.offset_x)
-        bitmap:set_center_y(HUDChat.LINE_HEIGHT / 2 + PrideFlags.Settings.offset_y)
+        place_bitmap(bitmap, text, panel)
         chat:_layout_output_panel()
     end)
 elseif RequiredScript == "lib/managers/hud/newhudstatsscreen" then
@@ -130,9 +144,7 @@ elseif RequiredScript == "lib/managers/hud/newhudstatsscreen" then
             local bitmap = add_bitmap(panel, "pride_flags_icon")
             local refresh = function()
                 PrideFlags:ApplyBitmap(bitmap, peer_id, text:font_size() / 20)
-                local _, _, width = text:text_rect()
-                bitmap:set_left(math.min(text:x() + width + PrideFlags.Settings.offset_x, panel:w() - bitmap:w()))
-                bitmap:set_center_y(text:center_y() + PrideFlags.Settings.offset_y)
+                place_bitmap(bitmap, text, panel)
             end
             PrideFlags:RegisterElement(item, refresh)
             refresh()
