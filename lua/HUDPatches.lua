@@ -46,7 +46,17 @@ local function refresh_teammate(teammate)
     place_bitmap(bitmap, name_text, teammate._panel)
 end
 
-if RequiredScript == "lib/managers/hud/hudteammate" then
+if RequiredScript == "lib/managers/hudmanager" then
+    if HUDManager and HUDManager.add_teammate then
+        PrideFlags:Log("Installed native HUDManager teammate hook")
+        Hooks:PostHook(HUDManager, "add_teammate", "PrideFlags_NativeTeammate", function(_, teammate)
+            if teammate then
+                PrideFlags:RegisterElement(teammate, function() refresh_teammate(teammate) end)
+                refresh_teammate(teammate)
+            end
+        end)
+    end
+elseif RequiredScript == "lib/managers/hud/hudteammate" then
     PrideFlags:Log("Installed HUDTeammate hooks")
     Hooks:PostHook(HUDTeammate, "init", "PrideFlags_HUDTeammateInit", function(teammate)
         PrideFlags:RegisterElement(teammate, function() refresh_teammate(teammate) end)

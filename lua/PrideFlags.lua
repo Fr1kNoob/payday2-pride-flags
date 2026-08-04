@@ -1,7 +1,7 @@
 _G.PrideFlags = _G.PrideFlags or {}
 
 PrideFlags.ModPath = PrideFlags.ModPath or ModPath
-PrideFlags.Version = "1.0.5"
+PrideFlags.Version = "1.0.6"
 PrideFlags.MessageId = "PrideFlags:hello"
 PrideFlags.SaveFile = SavePath .. "PrideFlags.json"
 PrideFlags.ValidFlags = {
@@ -168,7 +168,7 @@ function PrideFlags:Payload()
 end
 
 function PrideFlags:Send(peer_id)
-    if not LuaNetworking or not LuaNetworking:IsMultiplayer() then
+    if not LuaNetworking then
         return
     end
     if peer_id then
