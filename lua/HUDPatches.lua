@@ -44,7 +44,7 @@ local function refresh_teammate(teammate)
     local bitmap = add_bitmap(teammate._panel, "pride_flags_icon")
     local is_local = teammate._main_player or (teammate.is_local_player and teammate:is_local_player())
     local peer_id = (teammate.peer_id and teammate:peer_id()) or (is_local and (PrideFlags:LocalPeerId() or 0))
-    local scale = math.max(name_text:font_size(), 16) / 16
+    local scale = name_text:font_size() / math.max(tweak_data.hud_players.name_size, 1)
     PrideFlags:ApplyBitmap(bitmap, peer_id, scale)
     place_bitmap(bitmap, name_text, teammate._panel)
 end
