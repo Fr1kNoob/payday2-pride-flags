@@ -13,15 +13,18 @@ end
 local function place_bitmap(bitmap, text, panel)
     local _, _, width, height = text:text_rect()
     local position = PrideFlags.Settings.position
+    local gap = 4
     if position == "above" then
         bitmap:set_center_x(text:center_x())
-        bitmap:set_bottom(text:top() - 1)
+        bitmap:set_bottom(text:top() - gap)
+        panel:set_h(math.max(panel:h(), text:bottom() + bitmap:h() + gap))
     elseif position == "left" then
-        bitmap:set_right(text:left() - 3)
+        bitmap:set_right(text:left() - gap)
         bitmap:set_center_y(text:center_y())
     else
-        bitmap:set_left(text:left() + width + 3)
+        bitmap:set_left(text:left() + width + gap)
         bitmap:set_center_y(text:center_y())
+        panel:set_w(math.max(panel:w(), bitmap:right() + gap))
     end
     if position == "right" and bitmap:right() > panel:right() then
         bitmap:set_right(panel:right())
@@ -41,7 +44,7 @@ local function refresh_teammate(teammate)
     local bitmap = add_bitmap(teammate._panel, "pride_flags_icon")
     local is_local = teammate._main_player or (teammate.is_local_player and teammate:is_local_player())
     local peer_id = (teammate.peer_id and teammate:peer_id()) or (is_local and (PrideFlags:LocalPeerId() or 0))
-    local scale = name_text:font_size() / math.max(tweak_data.hud_players.name_size, 1)
+    local scale = math.max(name_text:font_size(), 16) / 16
     PrideFlags:ApplyBitmap(bitmap, peer_id, scale)
     place_bitmap(bitmap, name_text, teammate._panel)
 end
