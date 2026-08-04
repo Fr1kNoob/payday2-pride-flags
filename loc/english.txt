@@ -15,4 +15,19 @@
   "pride_flags_lesbian": "Lesbian",
   "pride_flags_ace": "Asexual",
   "pride_flags_nonbinary": "Nonbinary"
+  ,"pride_flags_gay": "Gay"
+  ,"pride_flags_pan": "Pansexual"
+  ,"pride_flags_aro": "Aro"
+  ,"pride_flags_agender": "Agender"
+  ,"pride_flags_genderfluid": "Genderfluid"
+  ,"pride_flags_genderqueer": "Genderqueer"
+  ,"pride_flags_bigender": "Bigender"
+  ,"pride_flags_demigender": "Demigender"
+  ,"pride_flags_demisexual": "Demisexual"
+  ,"pride_flags_aromantic": "Aromantic"
+  ,"pride_flags_polysexual": "Polysexual"
+  ,"pride_flags_omnisexual": "Omnisexual"
+  ,"pride_flags_intersex": "Intersex"
+  ,"pride_flags_neutrois": "Neutrois"
+  ,"pride_flags_progress": "Progress Pride"
 }

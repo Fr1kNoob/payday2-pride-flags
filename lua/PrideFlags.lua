@@ -1,7 +1,7 @@
 _G.PrideFlags = _G.PrideFlags or {}
 
 PrideFlags.ModPath = PrideFlags.ModPath or ModPath
-PrideFlags.Version = "1.1.7"
+PrideFlags.Version = "1.1.8"
 PrideFlags.MessageId = "PrideFlags:hello"
 PrideFlags.SaveFile = SavePath .. "PrideFlags.json"
 PrideFlags.ValidFlags = {
@@ -10,7 +10,22 @@ PrideFlags.ValidFlags = {
     bi = true,
     lesbian = true,
     ace = true,
-    nonbinary = true
+    nonbinary = true,
+    gay = true,
+    pan = true,
+    aro = true,
+    agender = true,
+    genderfluid = true,
+    genderqueer = true,
+    bigender = true,
+    demigender = true,
+    demisexual = true,
+    aromantic = true,
+    polysexual = true,
+    omnisexual = true,
+    intersex = true,
+    neutrois = true,
+    progress = true
 }
 PrideFlags.Defaults = {
     enabled = true,
