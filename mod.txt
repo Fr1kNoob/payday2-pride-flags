@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "blt_version": 2,
   "priority": 20,
+  "image": "avatar.png",
   "updates": [
     {
       "identifier": "pride_flags",
